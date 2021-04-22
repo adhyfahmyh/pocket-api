@@ -14,7 +14,6 @@ public class CustomerSearchDto {
     private Date startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
-
     private String address;
     private Integer status;
     private String username;

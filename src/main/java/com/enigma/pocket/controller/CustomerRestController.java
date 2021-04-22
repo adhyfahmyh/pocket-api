@@ -15,7 +15,7 @@ public class CustomerRestController {
     CustomerService customerService;
 
     @GetMapping("/customer/{id}")
-    public Customer getCustomerById(@PathVariable(name = "id") Integer id){
+    public Customer getCustomerById(@PathVariable(name = "id") String id){
         return customerService.findCustomerId(id);
     }
     @GetMapping("/customers")
@@ -34,7 +34,7 @@ public class CustomerRestController {
         customerService.updateCustomer(customer);
     }
     @PostMapping("/customer/{id}/delete")
-    public void deleteCustomer(@PathVariable(name = "id") Integer id){
+    public void deleteCustomer(@PathVariable(name = "id") String id){
         customerService.removeCustomer(id);
     }
 

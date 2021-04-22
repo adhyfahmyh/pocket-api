@@ -17,7 +17,7 @@ public class CustomerServiceImpl implements CustomerService{
     CustomerRepository customerRepository;
 
     @Override
-    public Customer findCustomerId(Integer id) {
+    public Customer findCustomerId(String id) {
         Customer customer = customerRepository.findById(id).get();
         return customer;
     }
@@ -37,18 +37,18 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public void updateCustomer(Customer customer) {
 
-            validatePresent(customer.getCustomerId());
+            validatePresent(customer.getId());
             customerRepository.save(customer);
     }
 
-    private void validatePresent(Integer id){
+    private void validatePresent(String id){
         if (!customerRepository.findById(id).isPresent()){
             throw new CustomerNotFoundException(String.format(notFoundMessage, id));
         }
     }
 
     @Override
-    public void removeCustomer(Integer id) {
+    public void removeCustomer(String id) {
         customerRepository.deleteById(id);
     }
 }

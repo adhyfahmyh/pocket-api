@@ -10,6 +10,6 @@ public interface CustomerService {
     public Page<Customer> findCustomers(CustomerSearchDto customerSearchForm, Pageable pageable);
     public void createCustomer(Customer customer);
     public void updateCustomer(Customer customer);
-    public void removeCustomer(Integer id);
+    public void removeCustomer(String id);
 
 }

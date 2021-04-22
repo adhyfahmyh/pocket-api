@@ -14,6 +14,6 @@ import java.util.List;
 //}
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Integer>, JpaSpecificationExecutor<Customer> {
+public interface CustomerRepository extends JpaRepository<Customer, String>, JpaSpecificationExecutor<Customer> {
 //    public List<Customer> findAllByFirstNameStartingWithAndEmailContainingAndBirthDateBetween(String firstName, String email, Date fromDate, Date toDate, Pageable pageable);
 }

@@ -1,14 +1,14 @@
 package com.enigma.pocket.service;
 
+import com.enigma.pocket.dto.CustomerSearchDto;
 import com.enigma.pocket.entity.Customer;
 import com.enigma.pocket.exception.CustomerNotFoundException;
 import com.enigma.pocket.repository.CustomerRepository;
+import com.enigma.pocket.specification.CustomerSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.sql.Date;
-import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -23,8 +23,9 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public List<Customer> findCustomers(String firstName, String email, Date fromDate, Date toDate, Pageable pageable) {
-        List<Customer> customers = customerRepository.findAllByFirstNameStartingWithAndEmailContainingAndBirthDateBetween(firstName, email, fromDate, toDate, pageable);
+    public Page<Customer> findCustomers(CustomerSearchDto customer, Pageable pageable) {
+//        List<Customer> customers = customerRepository.findAllByFirstNameStartingWithAndEmailContainingAndBirthDateBetween(firstName, email, fromDate, toDate, pageable);
+        Page<Customer> customers = customerRepository.findAll(CustomerSpecification.findCustomer(customer), pageable);
         return customers;
     }
 

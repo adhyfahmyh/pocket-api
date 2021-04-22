@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -22,8 +23,8 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public List<Customer> findCustomers(String firstName, String email, Pageable pageable) {
-        List<Customer> customers = customerRepository.findAllByFirstNameStartingWithAndEmailContaining(firstName, email, pageable);
+    public List<Customer> findCustomers(String firstName, String email, Date fromDate, Date toDate, Pageable pageable) {
+        List<Customer> customers = customerRepository.findAllByFirstNameStartingWithAndEmailContainingAndBirthDateBetween(firstName, email, fromDate, toDate, pageable);
         return customers;
     }
 

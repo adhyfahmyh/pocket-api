@@ -1,7 +1,9 @@
 package com.enigma.pocket.controller;
 
 import com.enigma.pocket.dto.ProductSearchDto;
+import com.enigma.pocket.entity.HistoryProduct;
 import com.enigma.pocket.entity.Product;
+import com.enigma.pocket.service.HistoryService;
 import com.enigma.pocket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,9 +18,17 @@ public class ProductRestController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    HistoryService historyService;
+
+
     @GetMapping("/product/{id}")
     public Product getProductById(@PathVariable(name = "id") String id){
         return productService.findProductById(id);
+    }
+    @GetMapping("/product/{id}/history")
+    public List<HistoryProduct> getHistoryByProduct(@PathVariable(name = "id") String id){
+        return historyService.findAllByProduct(id);
     }
 
 //    @GetMapping("/products")

@@ -12,9 +12,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
-    private final String notFoundMessage = "Customer with id: %s Not Found";
+
     @Autowired
     CustomerRepository customerRepository;
+
+    private final String notFoundMessage = "Customer with id: %s Not Found";
+
+
 
     @Override
     public Customer findCustomerId(String id) {
@@ -24,7 +28,6 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public Page<Customer> findCustomers(CustomerSearchDto customer, Pageable pageable) {
-//        List<Customer> customers = customerRepository.findAllByFirstNameStartingWithAndEmailContainingAndBirthDateBetween(firstName, email, fromDate, toDate, pageable);
         Page<Customer> customers = customerRepository.findAll(CustomerSpecification.findCustomer(customer), pageable);
         return customers;
     }

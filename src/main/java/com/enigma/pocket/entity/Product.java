@@ -2,11 +2,10 @@ package com.enigma.pocket.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "m_products")
@@ -23,6 +22,10 @@ public class Product {
     private Integer productStatus;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+
+
+    @OneToMany(mappedBy = "product")
+    private List<HistoryProduct> historyProducts = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -86,6 +89,14 @@ public class Product {
 
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<HistoryProduct> getHistoryProducts() {
+        return historyProducts;
+    }
+
+    public void setHistoryProducts(List<HistoryProduct> historyProducts) {
+        this.historyProducts = historyProducts;
     }
 
     @Override

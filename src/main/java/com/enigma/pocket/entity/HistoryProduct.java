@@ -1,12 +1,10 @@
 package com.enigma.pocket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -21,14 +19,18 @@ public class HistoryProduct {
     private Timestamp historyDate;
     private Integer priceBuy;
     private Integer priceSell;
-    private String productId;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    @JsonIgnore
+    private Product product;
 
     public HistoryProduct() {}
     public HistoryProduct(Product product) {
         this.historyDate = product.getUpdatedAt();
         this.priceBuy = product.getProductPriceBuy();
         this.priceSell = product.getProductPriceSell();
-        this.productId = product.getId();
+        this.product = product;
     }
 
     public String getId() {
@@ -63,13 +65,13 @@ public class HistoryProduct {
         this.priceSell = priceSell;
     }
 
-//    public String getProductId() {
-//        return productId;
-//    }
-//
-//    public void setProductId(String productId) {
-//        this.productId = productId;
-//    }
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     @Override
     public String toString() {

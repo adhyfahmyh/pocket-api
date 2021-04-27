@@ -30,7 +30,11 @@ public class PurchaseServiceImpl implements PurchaseService{
             Pocket pocket = pocketService.findPocketById(purchaseDetail.getPocket().getId());
             pocketService.topUp(pocket, purchaseDetail.getQuantityInGram(), purchase.getPurchaseType());
             purchaseDetail.setProduct(pocket.getProduct());
-            purchaseDetail.setPrice(pocket.getProduct().getProductPriceSell());
+            if (purchase.getPurchaseType() == 0) {
+                purchaseDetail.setPrice(pocket.getProduct().getProductPriceSell());
+            } else {
+                purchaseDetail.setPrice(pocket.getProduct().getProductPriceBuy());
+            }
             purchaseDetail.setPurchase(purchase);
         }
         return purchaseRepository.save(purchase);

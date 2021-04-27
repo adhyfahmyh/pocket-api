@@ -16,11 +16,12 @@ public class Product {
     private String id;
 
     private String productName;
-    private Integer productPriceBuy;
-    private Integer productPriceSell;
+    private Double productPriceBuy;
+    private Double productPriceSell;
     private String productImage;
     private Integer productStatus;
     private Timestamp createdAt;
+
     private Timestamp updatedAt;
 
 
@@ -43,19 +44,19 @@ public class Product {
         this.productName = productName;
     }
 
-    public Integer getProductPriceBuy() {
+    public Double getProductPriceBuy() {
         return productPriceBuy;
     }
 
-    public void setProductPriceBuy(Integer productPriceBuy) {
+    public void setProductPriceBuy(Double productPriceBuy) {
         this.productPriceBuy = productPriceBuy;
     }
 
-    public Integer getProductPriceSell() {
+    public Double getProductPriceSell() {
         return productPriceSell;
     }
 
-    public void setProductPriceSell(Integer productPriceSell) {
+    public void setProductPriceSell(Double productPriceSell) {
         this.productPriceSell = productPriceSell;
     }
 

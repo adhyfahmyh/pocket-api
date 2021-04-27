@@ -16,8 +16,8 @@ public class PocketRestController {
         return pocketService.findPocketById(id);
     }
 
-    @PostMapping("/pocket/create")
-    public void creatNewPocket(@RequestBody Pocket pocket){
+    @PostMapping("/pocket")
+    public void createNewPocket(@RequestBody Pocket pocket){
         pocketService.createPocket(pocket);
     }
 }

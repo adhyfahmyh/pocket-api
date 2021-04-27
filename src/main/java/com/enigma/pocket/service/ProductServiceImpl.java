@@ -34,6 +34,7 @@ public class ProductServiceImpl implements ProductService{
 //        Page<Product> products = productRepository.findAll(ProductSpecification.findProduct(product), pageable);
 //        return products;
 //    }
+
     @Override
     public List<Product> findProducts() {
         return productRepository.findAll();
@@ -44,8 +45,6 @@ public class ProductServiceImpl implements ProductService{
         product.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         return persistProduct(product);
     }
-
-
 
     @Override
     public Product updateProduct(Product product) {

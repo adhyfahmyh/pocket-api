@@ -18,8 +18,8 @@ public class HistoryProduct {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Timestamp historyDate;
-    private Integer priceBuy;
-    private Integer priceSell;
+    private Double priceBuy;
+    private Double priceSell;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -50,19 +50,19 @@ public class HistoryProduct {
         this.historyDate = historyDate;
     }
 
-    public Integer getPriceBuy() {
+    public Double getPriceBuy() {
         return priceBuy;
     }
 
-    public void setPriceBuy(Integer priceBuy) {
+    public void setPriceBuy(Double priceBuy) {
         this.priceBuy = priceBuy;
     }
 
-    public Integer getPriceSell() {
+    public Double getPriceSell() {
         return priceSell;
     }
 
-    public void setPriceSell(Integer priceSell) {
+    public void setPriceSell(Double priceSell) {
         this.priceSell = priceSell;
     }
 

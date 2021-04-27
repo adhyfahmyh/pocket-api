@@ -16,8 +16,13 @@ public class Pocket {
 
     private String pocketName;
     private Double pocketQty;
-    private String customerId;
-    private String productId;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public String getId() {
         return id;
@@ -43,30 +48,20 @@ public class Pocket {
         this.pocketQty = pocketQty;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public String getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    @Override
-    public String toString() {
-        return "Pocket{" +
-                "id='" + id + '\'' +
-                ", pocketName='" + pocketName + '\'' +
-                ", pocketQty=" + pocketQty +
-                ", customerId='" + customerId + '\'' +
-                ", productId='" + productId + '\'' +
-                '}';
-    }
 }

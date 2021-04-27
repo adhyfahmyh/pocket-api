@@ -45,17 +45,17 @@ public class ProductRestController {
         return productService.findProducts();
     }
 
-    @PostMapping("/product/create")
+    @PostMapping("/product")
     public Product createNewProduct(@RequestBody Product product){
         return productService.createProduct(product);
     }
 
-    @PutMapping("/updateProduct")
+    @PutMapping("/product")
     public void updateProduct(@RequestBody Product product){
         productService.updateProduct(product);
     }
 
-    @DeleteMapping("/deleteProduct/{id}")
+    @DeleteMapping("/product/{id}")
     public void deleteProduct(@PathVariable String id){
         productService.removeProduct(id);
     }

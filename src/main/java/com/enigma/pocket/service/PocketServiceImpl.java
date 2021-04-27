@@ -24,17 +24,24 @@ public class PocketServiceImpl implements PocketService{
     }
 
     @Override
-    public void createPocket(Pocket pocket) {
-        pocketRepository.save(pocket);
+    public Pocket createPocket(Pocket pocket) {
+        pocket.setPocketQty(0.0);
+        return pocketRepository.save(pocket);
     }
 
     @Override
-    public void updatePocket(Pocket pocket) {
-
+    public Pocket updatePocket(Pocket pocket) {
+        return pocketRepository.save(pocket);
     }
 
     @Override
     public void removeCustomer(String id) {
 
+    }
+
+    @Override
+    public void topUp(Pocket pocket, Double qty) {
+        pocket.setPocketQty(pocket.getPocketQty()+qty);
+        pocketRepository.save(pocket);
     }
 }

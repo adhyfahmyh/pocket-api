@@ -11,7 +11,8 @@ import java.util.List;
 public interface PocketService {
     public Pocket findPocketById(String id);
     public List<Pocket> findPockets();
-    public void createPocket(Pocket pocket);
-    public void updatePocket(Pocket pocket);
+    public Pocket createPocket(Pocket pocket);
+    public Pocket updatePocket(Pocket pocket);
     public void removeCustomer(String id);
+    public void topUp(Pocket pocket, Double qty);
 }

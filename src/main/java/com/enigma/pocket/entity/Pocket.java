@@ -1,5 +1,6 @@
 package com.enigma.pocket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class Pocket {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonIgnoreProperties({"pockets"})
     private Customer customer;
     @ManyToOne
     @JoinColumn(name = "product_id")

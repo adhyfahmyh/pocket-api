@@ -28,7 +28,7 @@ public class PurchaseServiceImpl implements PurchaseService{
         purchase.setPurchaseDate(new Date());
         for (PurchaseDetail purchaseDetail: purchase.getPurchaseDetails()){
             Pocket pocket = pocketService.findPocketById(purchaseDetail.getPocket().getId());
-            pocketService.topUp(pocket, purchaseDetail.getQuantityInGram());
+            pocketService.topUp(pocket, purchaseDetail.getQuantityInGram(), purchase.getPurchaseType());
             purchaseDetail.setProduct(pocket.getProduct());
             purchaseDetail.setPrice(pocket.getProduct().getProductPriceSell());
             purchaseDetail.setPurchase(purchase);

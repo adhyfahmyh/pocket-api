@@ -6,6 +6,8 @@ import com.enigma.pocket.service.PocketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class PocketRestController {
     @Autowired
@@ -16,8 +18,12 @@ public class PocketRestController {
         return pocketService.findPocketById(id);
     }
 
+    @GetMapping("/pockets")
+    public List<Pocket> getAllPockets(){return pocketService.findPockets();}
+
     @PostMapping("/pocket")
     public void createNewPocket(@RequestBody Pocket pocket){
         pocketService.createPocket(pocket);
     }
+
 }

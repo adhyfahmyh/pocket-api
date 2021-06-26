@@ -18,8 +18,6 @@ public class CustomerServiceImpl implements CustomerService{
 
     private final String notFoundMessage = "Customer with id: %s Not Found";
 
-
-
     @Override
     public Customer findCustomerId(String id) {
         Customer customer = customerRepository.findById(id).get();

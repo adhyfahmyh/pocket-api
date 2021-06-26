@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 public class CustomerSearchDto {
-    private Integer customerId;
+    private String customerId;
     private String firstName;
     private String lastName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -20,11 +20,11 @@ public class CustomerSearchDto {
     private String password;
     private String email;
 
-    public Integer getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 

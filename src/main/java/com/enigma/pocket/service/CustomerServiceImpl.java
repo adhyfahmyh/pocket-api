@@ -1,5 +1,6 @@
 package com.enigma.pocket.service;
 
+import com.enigma.pocket.dto.CustomerLoginDto;
 import com.enigma.pocket.dto.CustomerSearchDto;
 import com.enigma.pocket.entity.Customer;
 import com.enigma.pocket.exception.CustomerNotFoundException;
@@ -11,7 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     CustomerRepository customerRepository;
@@ -38,12 +39,12 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public void updateCustomer(Customer customer) {
 
-            validatePresent(customer.getId());
-            customerRepository.save(customer);
+        validatePresent(customer.getId());
+        customerRepository.save(customer);
     }
 
-    private void validatePresent(String id){
-        if (!customerRepository.findById(id).isPresent()){
+    private void validatePresent(String id) {
+        if (!customerRepository.findById(id).isPresent()) {
             throw new CustomerNotFoundException(String.format(notFoundMessage, id));
         }
     }
@@ -51,5 +52,11 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public void removeCustomer(String id) {
         customerRepository.deleteById(id);
+    }
+
+    @Override
+    public Customer customerLogin(CustomerLoginDto customerLoginDto) {
+        Customer login = customerRepository.findCustomerLogin(customerLoginDto.getUsername(), customerLoginDto.getUsername());
+        return login;
     }
 }

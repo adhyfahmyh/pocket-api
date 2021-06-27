@@ -1,5 +1,6 @@
 package com.enigma.pocket.controller;
 
+import com.enigma.pocket.dto.CustomerLoginDto;
 import com.enigma.pocket.dto.CustomerSearchDto;
 import com.enigma.pocket.entity.Customer;
 import com.enigma.pocket.entity.HistoryProduct;
@@ -25,11 +26,13 @@ public class CustomerRestController {
     public Customer getCustomerById(@PathVariable(name = "id") String id){
         return customerService.findCustomerId(id);
     }
+
     @GetMapping("/customer/{id}/pocket")
     public List<Pocket> getPockets(@PathVariable(name = "id") String id){
         return pocketService.findAllByCustomer(id);
     }
 
+//    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/customers")
     public Page<Customer> getAllCustomers(@RequestBody CustomerSearchDto customer,
                                           @RequestParam(name = "page", defaultValue = "0") Integer page,
@@ -37,18 +40,27 @@ public class CustomerRestController {
         Pageable pageable = PageRequest.of(page, size);
         return customerService.findCustomers(customer, pageable);
     }
+
     @PostMapping("/customer")
     public void createNewCustomer(@RequestBody Customer customer){
         customerService.createCustomer(customer);
     }
+
     @PutMapping("/customer")
     public void updateCustomer(@RequestBody Customer customer){
         customerService.updateCustomer(customer);
     }
+
     @DeleteMapping("/customer/{id}")
     public void deleteCustomer(@PathVariable(name = "id") String id){
         customerService.removeCustomer(id);
     }
 
+    @PostMapping(value = "/customer/login")
+    public Customer loginCustomer(
+            @RequestBody CustomerLoginDto loginDto
+            ){
+        return customerService.customerLogin(loginDto);
+    }
 
 }

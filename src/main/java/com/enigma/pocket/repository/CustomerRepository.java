@@ -16,6 +16,9 @@ import java.util.List;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, String>, JpaSpecificationExecutor<Customer> {
-    @Query(value = "SELECT * FROM m_customers WHERE username=:username and password=:password", nativeQuery = true)
+    @Query(value = "SELECT * FROM " +
+            "m_customers as c " +
+            "WHERE " +
+            "c.username=:username AND c.password=:password", nativeQuery = true)
     Customer findCustomerLogin(String username, String password);
 }

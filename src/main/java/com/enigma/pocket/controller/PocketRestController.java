@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class PocketRestController {
     @Autowired
@@ -24,6 +25,20 @@ public class PocketRestController {
     @PostMapping("/pocket")
     public void createNewPocket(@RequestBody Pocket pocket){
         pocketService.createPocket(pocket);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/pocket")
+    public Pocket updatePocket(
+            @RequestBody Pocket pocket) {
+        return pocketService.updatePocket(pocket);
+    }
+
+    @DeleteMapping("/pocket/{id}")
+    public void DeletePocket(
+            @PathVariable(name = "id") String id
+    ){
+        pocketService.removePocket(id);
     }
 
 }

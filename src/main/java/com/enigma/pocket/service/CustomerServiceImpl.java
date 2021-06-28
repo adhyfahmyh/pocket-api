@@ -56,7 +56,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer customerLogin(CustomerLoginDto customerLoginDto) {
-        Customer login = customerRepository.findCustomerLogin(customerLoginDto.getUsername(), customerLoginDto.getUsername());
+        Customer login = customerRepository.findCustomerLogin(customerLoginDto.getUsername(), customerLoginDto.getPassword());
+        if (login == null){
+            throw new CustomerNotFoundException(String.format(notFoundMessage));
+        }
         return login;
     }
 }

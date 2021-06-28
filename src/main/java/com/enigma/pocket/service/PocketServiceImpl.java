@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PocketServiceImpl implements PocketService{
+public class PocketServiceImpl implements PocketService {
     @Autowired
     PocketRepository pocketRepository;
     @Autowired
@@ -40,16 +40,16 @@ public class PocketServiceImpl implements PocketService{
     }
 
     @Override
-    public void removeCustomer(String id) {
-
+    public void removePocket(String id) {
+        pocketRepository.deleteById(id);
     }
 
     @Override
     public void topUp(Pocket pocket, Double qty, Integer purchaseType) {
-        if (purchaseType == 0){
-            pocket.setPocketQty(pocket.getPocketQty()+qty);
+        if (purchaseType == 0) {
+            pocket.setPocketQty(pocket.getPocketQty() + qty);
         } else {
-            pocket.setPocketQty(pocket.getPocketQty()-qty);
+            pocket.setPocketQty(pocket.getPocketQty() - qty);
         }
         pocketRepository.save(pocket);
     }
